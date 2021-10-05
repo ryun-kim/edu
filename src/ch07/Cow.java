@@ -5,4 +5,6 @@ public class Cow extends Animal{
     public void crying(){
         System.out.println("소가 음머");
     }
+
+
 }
