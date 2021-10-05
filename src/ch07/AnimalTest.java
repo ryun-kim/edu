@@ -7,8 +7,8 @@ public class AnimalTest {
         Cat cat =new BigCat();
         Animal animal = new BigCat();
         Animal animal2 = new Cat();
-        Animal animal3 = new Animal();
-        Object obj = new Animal();
+        //Animal animal3 = new Animal();
+        //Object obj = new Animal();
 
         //BigCat bc = new Cat(); X
         //Cat cat2 = new Animal(); X
