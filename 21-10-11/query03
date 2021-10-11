@@ -1,0 +1,12 @@
+CREATE INDEX idx_student_age
+ON t_student2 (age);
+
+DROP INDEX idx_student_age
+ON t_student2;
+
+SHOW INDEX FROM t_student2;
+
+-- PRIMARY KEY
+-- UNIQUE
+-- NOT NULL
+-- index
