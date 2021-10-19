@@ -32,6 +32,14 @@ public class MenuActivity extends AppCompatActivity {
             c = LinearActivity2.class;
         }else if (id == R.id.menuBtn3){
             c = ConstraintActivity.class;
+        }else if(id == R.id.menuBtn4) {
+            c = WriteActivity.class;
+        } else if(id == R.id.menuBtn5) {
+            c = BookPersonActivity.class;
+        } else if(id == R.id.menuBtn6) {
+            c = ImageViewActivity.class;
+        } else if(id == R.id.menuBtn7) {
+            c = PicsumActivity.class;
         }
         //분기
         Intent intent = new Intent(this,c);
