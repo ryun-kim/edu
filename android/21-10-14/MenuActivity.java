@@ -1,3 +1,4 @@
+package com.koreait.first;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,31 +9,41 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.koreait.first.ch07.BookPersonActivity;
+import com.koreait.first.ch10.DailyBoxofficeActivity;
+import com.koreait.first.ch10.WeeklyBoxOfficeActivity;
+import com.koreait.first.picsum.PicsumActivity;
+
 public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        int result = Utils.parseStringToInt("11az",1);
+        Log.i("myLog", ""+ result);
+
+
     }
 
     public void call(View v) {
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("tel:010-1111-2222"));
+        Intent intent = new Intent(Intent.ACTION_VIEW
+                , Uri.parse("tel:010-1111-2222"));
         startActivity(intent);
     }
 
-    public void moveToActivity(View v){
+    public void moveToActivity(View v) {
         int id = v.getId();
-        Class c = null;
 
-        if(id == R.id.menuBtn1){
+        Class c = null;
+        if(id == R.id.menuBtn1) {
             c = MainActivity.class;
-        }else if (id == R.id.menuBtn2){
-            c = LinearActivity2.class;
-        }else if (id == R.id.menuBtn3){
+        } else if(id == R.id.menuBtn2) {
+            c = LinearActivity.class;
+        } else if(id == R.id.menuBtn3) {
             c = ConstraintActivity.class;
-        }else if(id == R.id.menuBtn4) {
+        } else if(id == R.id.menuBtn4) {
             c = WriteActivity.class;
         } else if(id == R.id.menuBtn5) {
             c = BookPersonActivity.class;
@@ -40,58 +51,64 @@ public class MenuActivity extends AppCompatActivity {
             c = ImageViewActivity.class;
         } else if(id == R.id.menuBtn7) {
             c = PicsumActivity.class;
+        } else if(id == R.id.menuBtn8) {
+            c = DailyBoxofficeActivity.class;
+        }else if(id == R.id.menuBtn9) {
+            c = WeeklyBoxOfficeActivity.class;
         }
-        //분기
-        Intent intent = new Intent(this,c);
+
+        if(c == null){
+            //에러메시지 띄우고
+            Snackbar.make(v,"준비중입니다.",Snackbar.LENGTH_SHORT).show();
+            //Toast.makeText(this,"준비중",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Intent intent = new Intent(this, c);
         startActivity(intent);
     }
 
-    public void moveToActivityWithText(View v){
+    public void moveToActivityWithText(View v) {
         TextView tv = (TextView)v;
         String text = (String)tv.getText();
-        Log.i("mylog",text);
-        //gettext를 이용하여 구한 소스
-        // 로그를 활용하여 버튼에 따라 값을 구분한다
-        Class c= null;
-        // null부분만 바뀌게 몰아주기를 해서 중복된 소스를 줄인다.
-        /* 이제 text에 메인 ,리니어레이아웃,제약레이아웃 값을 받게 되면
-        거기에 맞게끔 소스를 넘겨준다.
-        c = MainActivity.class;
+        Log.i("myLog", text);
 
-        c = LinearActivity2.class;
-
-        c = ConstraintActivity.class;
-         */
-        switch (text) {
+        Class c = null;
+        switch(text) {
             case "메인":
                 c = MainActivity.class;
                 break;
-            case "리니어레이아웃" :
-                c = LinearActivity2.class;
+            case "리니어레이아웃":
+                c = LinearActivity.class;
                 break;
             case "제약레이아웃":
                 c = ConstraintActivity.class;
                 break;
         }
 
-        Intent intent = new Intent(this,c);
-        startActivity(intent);
-
-    }
-    /*
-    public void moveToMain(View v){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, c);
         startActivity(intent);
     }
-
-    public void moveToLinear(View V){
-        Intent intent = new Intent(this, LinearActivity2.class);
-        startActivity(intent);
-    }
-
-    public void moveToConstraint(View v){
-        Intent intent = new Intent(this, ConstraintActivity.class);
-        startActivity(intent);
-    }
-    */
 }
+        /*
+         분기
+
+    public void moveToMain(View v) {
+        Class c = MainActivity.class;
+        Intent intent = new Intent(this, c);
+        startActivity(intent);
+    }
+}
+    }
+
+    public void moveToLinear(View v) {
+        Intent intent = new Intent(this, LinearActivity.class);
+        startActivity(intent);
+    }
+
+    public void moveToConstraint(View v) {
+        Intent intent = new Intent(this, ConstraintActivity2.class);
+        startActivity(intent);
+    }
+}
+         */
